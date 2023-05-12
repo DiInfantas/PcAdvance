@@ -21,7 +21,7 @@ if (navigator.geolocation) {
 function ObtenerLocalizacion(position) {
     console.log(position.coords.latitude + " - " + position.coords.longitude);
     $.get("https://api.open-meteo.com/v1/forecast?latitude=" + position.coords.latitude + "&longitude=" + position.coords.longitude + "&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m", function (data) {
-        $("#temperatura").html(data["current_weather"]["temperature"]+"° En su zona.");
+        $("#temperatura").html(data["current_weather"]["temperature"] + "° En su zona.");
     });
 }
 
@@ -52,11 +52,11 @@ function validar() {
     }
     if (correo == "") {
         html += "- Debe Ingresar un Correo \n";
-      } else {
+    } else {
         if (validarEmail(correo) == false) {
-          html += "- Debe Ingresar un Correo Válido \n";
+            html += "- Debe Ingresar un Correo Válido \n";
         }
-      }
+    }
 
     if (ciudad == "0") {
         html += "- Debe Seleccionar una Ciudad \n";
@@ -66,11 +66,11 @@ function validar() {
         html += "- Debe ingresar un comentario a lo menos de 50 caracteres \n";
     }
 
-    if(numero.trim().lenght < 9) {
+    if (numero.trim().lenght < 9) {
         html += "- El número ingresado debe tener 9 dígitos \n";
     }
 
-    return html;   
+    return html;
 }
 
 function validarRut(rutCompleto) {
@@ -78,12 +78,12 @@ function validarRut(rutCompleto) {
 
     if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test(rutCompleto))
         return false;
-   
+
     var tmp = rutCompleto.split('-');
     var digv = tmp[1];
     var rut = tmp[0];
     if (digv == 'K') digv = 'k';
-    
+
     return (dv(rut) == digv);
 }
 
@@ -98,4 +98,4 @@ function dv(T) {
 function validarEmail(email) {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
-  }
+}
