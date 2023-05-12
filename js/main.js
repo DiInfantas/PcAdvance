@@ -11,6 +11,20 @@ $(document).ready(function () {
 
 });
 
+
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(ObtenerLocalizacion);
+} else {
+    swal("Su navegador no soporta la geolocalizacion", "Error", "error");
+}
+
+function ObtenerLocalizacion(position) {
+    console.log(position.coords.latitude + " - " + position.coords.longitude);
+    $.get("https://api.open-meteo.com/v1/forecast?latitude=" + position.coords.latitude + "&longitude=" + position.coords.longitude + "&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m", function (data) {
+        $("#temperatura").html(data["current_weather"]["temperature"]+"° En su Zona");
+    });
+}
+
 function validar() {
 
     var html = "";
