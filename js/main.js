@@ -17,6 +17,7 @@ function validar() {
     var nombre = $("#txtnombre").val();
     var correo = $("#txtemail").val();
     var ciudad = $("#cbxCiudad").val();
+    var numero = $("#txtNumero").val();
     var Comentario = $("#txtaComentario").val();
 
     if (($("#rbtnRUT")).is(":not(:checked)") && ($("#rbtnPasaporte")).is(":not(:checked)")) {
@@ -47,7 +48,13 @@ function validar() {
         html += "- Debe ingresar un comentario a lo menos de 50 caracteres \n";
     }
 
-    return html;
+    if(numero.trim().lenght < 9) {
+        html += "- El número ingresado debe tener 9 dígitos \n";
+    }
+
+
+
+    return html;   
 }
 
 function validarRut(rutCompleto) {
