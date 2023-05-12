@@ -38,7 +38,11 @@ function validar() {
     }
     if (correo == "") {
         html += "- Debe Ingresar un Correo \n";
-    }
+      } else {
+        if (validarEmail(correo) == false) {
+          html += "- Debe Ingresar un Correo Válido \n";
+        }
+      }
 
     if (ciudad == "0") {
         html += "- Debe Seleccionar una Ciudad \n";
@@ -51,8 +55,6 @@ function validar() {
     if(numero.trim().lenght < 9) {
         html += "- El número ingresado debe tener 9 dígitos \n";
     }
-
-
 
     return html;   
 }
@@ -78,3 +80,8 @@ function dv(T) {
         S = (S + T % 10 * (9 - M++ % 6)) % 11;
     return S ? S - 1 : 'k';
 }
+
+function validarEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  }
